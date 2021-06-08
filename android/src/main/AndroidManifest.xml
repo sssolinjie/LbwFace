@@ -37,7 +37,7 @@
         >
         <!--采集成功页面-->
         <activity android:name=".CollectionSuccessExpActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme_NoTitle" />
 
         <!-- 活体图像采集界面 -->
