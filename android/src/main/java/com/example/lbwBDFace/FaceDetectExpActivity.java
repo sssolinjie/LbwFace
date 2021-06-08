@@ -12,6 +12,8 @@ import com.example.lbwBDFace.ui.utils.IntentUtils;
 import com.example.lbwBDFace.ui.widget.TimeoutDialog;
 
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -40,11 +42,14 @@ public class FaceDetectExpActivity extends FaceDetectActivity implements
         if (status == FaceStatusNewEnum.OK && mIsCompletion) {
             Log.i("人脸图像采集", "人脸图像采集,采集成功");
             IntentUtils.getInstance().setBitmap(mBmpStr);
-            Intent intent = new Intent(FaceDetectExpActivity.this,
-                    CollectionSuccessExpActivity.class);
-            intent.putExtra("destroyType", "FaceDetectExpActivity");
+                // ExampleApplication.destroyActivity("FaceDetectExpActivity");
+            EventBus.getDefault().post(MessageEvent.getInstance("2",mBmpStr));
             finish();
-            startActivity(intent);
+//            Intent intent = new Intent(FaceDetectExpActivity.this,
+//                    CollectionSuccessExpActivity.class);
+//            intent.putExtra("destroyType", "FaceDetectExpActivity");
+//            finish();
+//            startActivity(intent);
 //            Intent intent = new Intent();
 //            intent.putExtra("image", mBmpStr);
 //            intent.putExtra("cropimage", "test");

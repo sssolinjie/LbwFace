@@ -16,6 +16,7 @@ import android.hardware.Camera;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.Surface;
@@ -149,25 +150,25 @@ public class FaceDetectActivity extends BaseActivity implements
         mFaceDetectRoundView = (FaceDetectRoundView) mRootView.findViewById(R.id.detect_face_round);
         mFaceDetectRoundView.setIsActiveLive(false);
         mCloseView = (ImageView) mRootView.findViewById(R.id.detect_close);
-        mSoundView = (ImageView) mRootView.findViewById(R.id.detect_sound);
-        mSoundView.setImageResource(mIsEnableSound ?
-                R.mipmap.icon_titlebar_voice2 : R.drawable.collect_image_voice_selector);
-        mSoundView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mIsEnableSound = !mIsEnableSound;
-                mSoundView.setImageResource(mIsEnableSound ?
-                        R.mipmap.icon_titlebar_voice2 : R.drawable.collect_image_voice_selector);
-                if (mIDetectStrategy != null) {
-                    mIDetectStrategy.setDetectStrategySoundEnable(mIsEnableSound);
-                }
-            }
-        });
-        mTipsTopView = (TextView) mRootView.findViewById(R.id.detect_top_tips);
+//        mSoundView = (ImageView) mRootView.findViewById(R.id.detect_sound);
+//        mSoundView.setImageResource(mIsEnableSound ?
+//                R.mipmap.icon_titlebar_voice2 : R.drawable.collect_image_voice_selector);
+//        mSoundView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mIsEnableSound = !mIsEnableSound;
+//                mSoundView.setImageResource(mIsEnableSound ?
+//                        R.mipmap.icon_titlebar_voice2 : R.drawable.collect_image_voice_selector);
+//                if (mIDetectStrategy != null) {
+//                    mIDetectStrategy.setDetectStrategySoundEnable(mIsEnableSound);
+//                }
+//            }
+//        });
+       // mTipsTopView = (TextView) mRootView.findViewById(R.id.detect_top_tips);
         mSuccessView = (ImageView) mRootView.findViewById(R.id.detect_success_image);
 
         mImageLayout = (LinearLayout) mRootView.findViewById(R.id.detect_result_image_layout);
-        mImageLayout2 = (LinearLayout) mRootView.findViewById(R.id.detect_result_image_layout2);
+       // mImageLayout2 = (LinearLayout) mRootView.findViewById(R.id.detect_result_image_layout2);
         mViewBg = findViewById(R.id.view_bg);
         if (mBase64ImageMap != null) {
             mBase64ImageMap.clear();
@@ -285,9 +286,13 @@ public class FaceDetectActivity extends BaseActivity implements
 
         mCameraParam.setPictureFormat(PixelFormat.JPEG);
         int degree = displayOrientation(this);
-        mCamera.setDisplayOrientation(degree);
-        // 设置后无效，camera.setDisplayOrientation方法有效
-        mCameraParam.set("rotation", degree);
+        Log.d("林炳午", String.valueOf(degree));
+
+        //修改横屏
+        //mCamera.setDisplayOrientation(degree);
+        //mCameraParam.set("rotation", degree);
+        mCamera.setDisplayOrientation(90);
+        mCameraParam.set("rotation", 270);
         mPreviewDegree = degree;
         if (mIDetectStrategy != null) {
             mIDetectStrategy.setPreviewDegree(degree);

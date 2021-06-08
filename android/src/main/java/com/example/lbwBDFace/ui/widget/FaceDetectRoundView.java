@@ -180,10 +180,16 @@ public class FaceDetectRoundView extends View {
         canvas.drawCircle(mX, mY, mR, mFaceRoundPaint);
         // 画文字
         if (!TextUtils.isEmpty(mTipSecondText)) {
+            canvas.rotate(90);
+            canvas.translate(100, 100);
             canvas.drawText(mTipSecondText, mX, mY - mR - 40 - 25 - 59, mTextSecondPaint);
+            canvas.rotate(-90);
         }
         if (!TextUtils.isEmpty(mTipTopText)) {
+            canvas.rotate(90);
+            canvas.translate(100, 100);
             canvas.drawText(mTipTopText, mX, mY - mR - 40 - 25 - 59 - 90, mTextTopPaint);
+            canvas.rotate(-90);
         }
         if (mIsActiveLive) {
             canvas.translate(mX, mY);
@@ -192,6 +198,7 @@ public class FaceDetectRoundView extends View {
             // 画成功进度
             drawSuccessCircleLine(canvas);
         }
+
     }
 
     // 画默认刻度线

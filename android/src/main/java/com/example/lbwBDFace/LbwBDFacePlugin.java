@@ -63,7 +63,7 @@ public class LbwBDFacePlugin implements FlutterPlugin, MethodCallHandler,Activit
   }
   //此处是旧的插件加载注册方式
   public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "lbwWake");
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "lbwBDFace");
     final LbwBDFacePlugin plugin = new LbwBDFacePlugin().initPlugin(channel, registrar);
     channel.setMethodCallHandler(plugin);
     registrar.addActivityResultListener(plugin);
